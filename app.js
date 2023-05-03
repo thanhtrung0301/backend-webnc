@@ -10,7 +10,7 @@ require("dotenv").config();
 var indexRouter = require("./routes/index");
 
 var app = express();
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors({ credentials: true, origin: "http://localhost:6060" }));
 
 const mongoose = require("mongoose");
 
