@@ -17,7 +17,7 @@ const mongoose = require("mongoose");
 mongoose
   .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(() => {
-    app.listen(5000, () => {
+    app.listen(6060, () => {
       console.log("Server has started!");
     });
   });
@@ -53,7 +53,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/account", indexRouter);
+app.use("/api", indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

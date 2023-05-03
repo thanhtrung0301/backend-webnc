@@ -1,14 +1,18 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
-const groupSchema = new schema({
+const hotelSchema = new schema({
   name: {type: String},
   location: {type: String},
-  price: {type: Number},
-  distanct: {type: Number},
-  owner: { type: schema.Types.ObjectId,  ref: 'account' },
+  address: {type: String},
+  properties: [{type: String}],
+  special_room: {},
+  description: {type: String},
+  price_per_night: {type: Number},
+  distance: {type: Number},
   added_at: { type: Date, default: Date.now },
   is_deleted: { type: Boolean, required: true, default: false },
+  images: [],
 });
 
-module.exports = group = mongoose.model('group', groupSchema);
+module.exports = hotel = mongoose.model('hotel', hotelSchema);
