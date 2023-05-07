@@ -8,12 +8,14 @@ contractController.Create = async (req, res, next) => {
 
     await contract.save();
 
-    return res
-      .status(200)
-      .json({ success: true, msg: "Đã tạo hợp đồng thành công" });
+    return res.status(200).json({
+      success: true,
+      data: { contract_id: contract._id },
+      msg: "Đã tạo hợp đồng thành công",
+    });
   } catch (err) {
     next(err);
   }
 };
 
-module.exports = hotelController;
+module.exports = contractController;
