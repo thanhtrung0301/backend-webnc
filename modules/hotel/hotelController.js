@@ -39,6 +39,19 @@ hotelController.Search = async (req, res, next) => {
   }
 };
 
+hotelController.GetOne = async (req, res, next) => {
+  try {
+    const hotel = await hotelSchema.findById(req.params.id);
+
+    if (hotel) {
+      return res.status(200).json({ success: true, data: hotel });
+    }
+    return res.status(200).json({ success: false, msg: "Không tìm thấy" });
+  } catch (err) {
+    next(err);
+  }
+};
+
 hotelController.Create = async (req, res, next) => {
   try {
     const hotel = new hotelSchema({

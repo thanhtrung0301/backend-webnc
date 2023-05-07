@@ -8,6 +8,7 @@ router.post('/register', accountModule.Register);
 router.post('/login', accountModule.Login);
 router.post('/create', hotelModule.Create);
 router.post('/search', hotelModule.Search);
+router.get('/hotel/:id', hotelModule.GetOne);
 
 // router.get('/logout',  accountModule.logout);
 
