@@ -24,7 +24,7 @@ paymentController.Create = async (req, res, next) => {
       },
     });
     // const one = await orderController.getOneOrder({ _id: order_id });
-    const vnpUrl = `/checkout/payment-complete?payment_id=${payment._id}`;
+    const vnpUrl = `/complete/${contract_id}`;
 
     return res.status(200).json({
       success: true,

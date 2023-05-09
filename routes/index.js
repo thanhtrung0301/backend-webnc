@@ -12,6 +12,7 @@ router.post('/account/forgot-password', accountModule.ResetPassword);
 router.post('/create', hotelModule.Create);
 router.post('/search', hotelModule.Search);
 router.get('/hotel/:id', hotelModule.GetOne);
+router.get('/contract/:id', contractModule.GetOne);
 router.post('/create-contract', contractModule.Create);
 router.post('/create-payment', paymentModule.Create);
 
