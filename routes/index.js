@@ -6,8 +6,9 @@ const contractModule = require('../modules/contract/contractController');
 const paymentModule = require('../modules/payment/paymentController');
 
 /* GET home page. */
-router.post('/register', accountModule.Register);
-router.post('/login', accountModule.Login);
+router.post('/account/register', accountModule.Register);
+router.post('/account/login', accountModule.Login);
+router.post('/account/forgot-password', accountModule.ResetPassword);
 router.post('/create', hotelModule.Create);
 router.post('/search', hotelModule.Search);
 router.get('/hotel/:id', hotelModule.GetOne);
