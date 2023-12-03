@@ -6,6 +6,8 @@ var logger = require("morgan");
 var cors = require("cors");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const cron = require('node-cron');
+
 
 var indexRouter = require("./routes/index");
 
@@ -46,6 +48,11 @@ app.use(function (req, res, next) {
     next();
   }
 });
+
+  // 60 phút chạy 1 lần craw data
+  cron.schedule('0 */5 * * *', async () => {
+    // await newsAdminController.cronCrawlData();
+  });
 
 app.use(logger("dev"));
 app.use(express.json());

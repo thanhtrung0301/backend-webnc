@@ -3,6 +3,14 @@ const newsSchema = require("./newsSchema");
 const cheerio = require("cheerio");
 const request = require("request-promise");
 const moment = require("moment");
+const TIME_CRAWL_NEWS = 10000;
+
+
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
 
 newsController.getCrawlNews = async (req, res, next) => {
   try {
@@ -77,6 +85,7 @@ newsController.getContent = async (url) => {
         if (data) {
           newLinks.push({ ...i, content: data, category, publishedAt });
         }
+        
         // await sleep(TIME_CRAWL_NEWS);
       }
     }
