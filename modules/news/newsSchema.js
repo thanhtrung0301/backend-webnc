@@ -1,0 +1,47 @@
+const mongoose = require('mongoose');
+const schema = mongoose.Schema;
+
+const newsSchema = new schema({
+  from_source:{type:String},
+  category_name:{type:String},
+  news_id:{type:String},
+  editor_type:{type:String},
+  title: { type: String },
+  title_search:{ type: String },
+  content:{type:String},
+  description:{ type: String },
+  img_ver:{type:String},
+  img_hor:{type:String},
+  post_url:{type:String},
+  url:{type:String},
+  categories:[],
+  tags:[],
+  keyword:{type:String},
+  status: { type: Number, default: 1 },
+  primary_category:{ type: schema.Types.Object},
+  royalties_editor:{ type: schema.Types.Object},
+  is_deleted: { type: Boolean, required: true, default: false },
+  deleted_at: { type: Date },
+  deleted_by: { type: schema.Types.ObjectId, ref: 'users' },
+  added_by: { type: schema.Types.ObjectId, ref: 'users' },
+  added_at: { type: Date, default: Date.now },
+  updated_by: { type: schema.Types.ObjectId, ref: 'users' },
+  updated_at: { type: Date, default: Date.now },
+  publishedAt: { type: Date },
+  createdAt: { type: Date },
+  modifiedAt: { type: Date },
+  updatedAt: { type: Date },
+  contentsource:{ type: schema.Types.Object},
+  contentpenname:{ type: schema.Types.Object},
+  have_video :{ type: Boolean},
+  is_live :{ type: Boolean},
+  video_url:{type: schema.Types.String},
+  title_google: {type:String},
+  content_creators:[],
+  sourcename: {type:String},
+  tag_name: {type:String},
+  category_id: { type: schema.Types.ObjectId, ref: 'newscategory' },
+  tags_id: [{ type: schema.Types.ObjectId, ref: 'newstag' }]
+});
+
+module.exports = news = mongoose.model('news', newsSchema);
