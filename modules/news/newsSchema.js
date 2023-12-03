@@ -3,7 +3,7 @@ const schema = mongoose.Schema;
 
 const newsSchema = new schema({
   from_source:{type:String},
-  category_name:{type:String},
+  categories:{type:String},
   news_id:{type:String},
   editor_type:{type:String},
   title: { type: String },
@@ -14,7 +14,6 @@ const newsSchema = new schema({
   img_hor:{type:String},
   post_url:{type:String},
   url:{type:String},
-  categories:[],
   tags:[],
   keyword:{type:String},
   status: { type: Number, default: 1 },
@@ -39,9 +38,6 @@ const newsSchema = new schema({
   title_google: {type:String},
   content_creators:[],
   sourcename: {type:String},
-  tag_name: {type:String},
-  category_id: { type: schema.Types.ObjectId, ref: 'newscategory' },
-  tags_id: [{ type: schema.Types.ObjectId, ref: 'newstag' }]
 });
 
 module.exports = news = mongoose.model('news', newsSchema);

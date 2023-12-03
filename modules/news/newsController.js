@@ -6,14 +6,14 @@ const moment = require("moment");
 
 newsController.getCrawlNews = async (req, res, next) => {
   try {
-    const list = await newsController.getContent();
+    const list = await newsController.getContent(req.body.url);
     if (list.length === 0) {
       console.log("call api err");
       return;
     }
     for (let i of list) {
       const one = new newsSchema({
-        category_name: i.category,
+        categories: i.category,
         img_hor: i.url_img ? i.url_img : "",
         description: i.description,
         title_google: i.title,
@@ -41,11 +41,9 @@ newsController.getCrawlNews = async (req, res, next) => {
   }
 };
 
-newsController.getContent = async () => {
+newsController.getContent = async (url) => {
   try {
-    const list = await newsController.LishLink(
-      `https://vnexpress.net/tin-tuc-24h`
-    );
+    const list = await newsController.LishLink(url);
     let newLinks = [];
     for (let i of list) {
       if (i.link) {
@@ -63,7 +61,7 @@ newsController.getContent = async () => {
           publishedAt = publishedAt.slice(startPos + 2, endPos);
         });
         $(
-          "section.section.page-detail.top-detail > div.container > div.sidebar-1 > div.header-content.width_common > ul > li > a"
+          "section.section.page-detail.top-detail > div.container > div.sidebar-1 > div.header-content.width_common > ul > li:first > a"
         ).each((index, testEl) => {
           category = $(testEl).text();
         });
@@ -102,7 +100,7 @@ newsController.LishLink = async (page) => {
     ).each((index, item) => {
       let itemAdd = {};
       $(item)
-        .find("h3.title-news > a")
+        .find(".title-news > a")
         .each((index1, title) => {
           itemAdd = {
             ...itemAdd,
