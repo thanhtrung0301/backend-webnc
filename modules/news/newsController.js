@@ -35,8 +35,10 @@ newsController.getCrawlNews = async (req, res, next) => {
         from_source: 'vnexpress.net',
       });
       await one.save();
-      // return otherHelper.sendResponse(res, httpStatus.OK, true, one, null, 'SUCCESS', null);
     }
+    return res.status(200).send({
+      message: "Successfully!"
+    });
   } catch (error) {
     console.log(error);
   }
@@ -70,7 +72,7 @@ newsController.getContent = async () => {
 
 newsController.LishLink = async (page) => {
   try {
-    const listAllNews = await newsSch.find().select('news_id').sort({ publishedAt: -1 });
+    const listAllNews = await newsSchema.find().select('news_id').sort({ publishedAt: -1 });
     let html = await request(page);
     let $ = cheerio.load(html); // load HTML
     let links = [];
